@@ -18,7 +18,7 @@ sequenceDiagram
     participant Ext as Chrome Extension
     participant API as FastAPI Backend
     participant DB as FAISS Vector Store
-    participant LLM as Groq (Llama 3.1 8B)
+    participant LLM as Groq (Llama 3.3 70B)
     participant Search as DuckDuckGo Tool
 
     User->>Ext: Type question & click "Ask"
@@ -68,7 +68,7 @@ sequenceDiagram
 
 * **Frontend:** Vanilla HTML, CSS, JavaScript (Chrome Extension Manifest V3)
 * **Backend:** Python, FastAPI, Pydantic
-* **LLM Engine:** Groq API running `llama-3.1-8b-instant`
+* **LLM Engine:** Groq API running `llama-3.3-70b-versatile`
 * **Embeddings:** `SentenceTransformer` with `BAAI/bge-small-en`
 * **Vector Store:** Facebook AI Similarity Search (FAISS)
 * **Agent Toolkit:** LangChain Core, DuckDuckGo Search API
