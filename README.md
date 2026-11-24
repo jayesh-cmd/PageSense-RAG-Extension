@@ -72,3 +72,5 @@ sequenceDiagram
 * **Embeddings:** `SentenceTransformer` with `BAAI/bge-small-en`
 * **Vector Store:** Facebook AI Similarity Search (FAISS)
 * **Agent Toolkit:** LangChain Core, DuckDuckGo Search API
+
+----------

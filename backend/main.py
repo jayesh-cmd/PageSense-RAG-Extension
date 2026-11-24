@@ -1,5 +1,5 @@
 import socket
-# Force IPv4 to bypass macOS broken IPv6 resolution (fixes 75-second delay)
+# Forced IPv4 to bypass macOS broken IPv6 resolution (fixes 75-second delay)
 orig_getaddrinfo = socket.getaddrinfo
 def getaddrinfo_ipv4(*args, **kwargs):
     responses = orig_getaddrinfo(*args, **kwargs)
@@ -82,9 +82,11 @@ def get_answer(payload: RAGrequest):
         SystemMessage(content="""You are a helpful assistant.
 
             RULES:
-            1. Answer ONLY from the provided document context and conversation history.
-            2. If the document context is completely unrelated or does not contain the answer, call the web_search tool.
-            3. Do NOT start answers with phrases like "Based on the context..." or "According to the document...". Answer directly."""),
+            1. The 'Document Context' provided below contains excerpts from the user's current webpage.
+            2. Answer ONLY from the provided document context and conversation history.
+            3. If the user asks what the page is about, summarize the provided document context. Do NOT call the web_search tool for this.
+            4. ONLY call the web_search tool if the user asks a specific factual question that is NOT found in the document context.
+            5. Do NOT start answers with phrases like "Based on the context..." or "According to the document...". Answer directly."""),
         HumanMessage(content=f"""Conversation History:
 {history_str}
 
@@ -132,4 +134,4 @@ User's question: {payload.query}""")
         answer = response.content
 
     history.append((payload.query, answer))
-    return JSONResponse(content={"answer": answer})
+    return JSONResponse(content={"answer": answer}) # Final
